@@ -1,7 +1,7 @@
 ---
 title: "The Watering Hole"
 summary: "Flash-chill beverage dispenser designed in Fusion 360 across three client-driven design iterations."
-date: 2026-01-01 # [EDIT: confirm completion date]
+date: 2026-01-01 # [EDIT: confirm month - Eric confirms year 2026]
 status: complete
 category: design-build
 tools: ["Fusion 360", "Client iteration", "Thermal design"]

@@ -1,7 +1,7 @@
 ---
 title: "Chime Machine"
 summary: "Arduino-timed solenoid striker that reached a 50 percent efficiency improvement over the first prototype."
-date: 2026-02-01 # [EDIT: confirm completion date]
+date: 2022-06-01 # [EDIT: confirm month - Eric recalls 2022]
 status: complete
 category: embedded
 tools: ["Arduino", "Onshape", "Solenoids"]
@@ -11,13 +11,13 @@ heroAlt: "Isometric CAD render of the Chime Machine solenoid striker mechanism a
 
 ## Problem
 
-[EDIT: 2-4 sentences on what the Chime Machine needed to do (produce timed chimes/notes) and for whom (course project, personal build).]
+RIT team design project ("robochime"): build a device that autonomously plays a song at least 40 seconds long, using at least 5 different notes, triggered by a single flip of a power switch with no further human interference. Built from a provided kit of parts, judged on sound quality rather than a fixed spec.
 
 ## Constraints
 
-- [EDIT: timing accuracy or note-count requirement]
-- [EDIT: power/solenoid sizing constraint]
-- [EDIT: budget or parts-on-hand constraint]
+- Must use, and activate, at least one motor and at least one solenoid to help play the song
+- Kit-parts only (plus a reasonable amount of hot glue); paint allowed but decorative only, never load-bearing
+- Must rest solely on a table's top surface (no clamping/adhering, though it can extend below the table edge) and fit inside a 23"W x 19"D x 19.5"H box; all wiring to the shared control box goes through a provided 26-pin ribbon header
 
 ## Design decisions
 
