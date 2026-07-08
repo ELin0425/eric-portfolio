@@ -5,8 +5,8 @@ date: 2022-06-01 # [EDIT: confirm month - Eric recalls 2022; the 2021 date on th
 status: complete
 category: machining
 tools: ["Onshape", "GD&T", "Manual lathe", "Manual mill"]
-hero: ./hero.png
-heroAlt: "IMAGE PENDING: photo of the machined piston with calipers measuring a toleranced dimension"
+hero: ./hero.jpg
+heroAlt: "Photo of the assembled piston/crank mechanism: aluminum base, knob and crank block at top, connecting link, and the piston inside its clear polycarbonate guide"
 model3d:
   kind: glb
   src: models/piston.gltf
