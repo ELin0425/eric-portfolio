@@ -7,6 +7,9 @@ category: design-build
 tools: ["Fusion 360", "Client iteration", "Thermal design"]
 hero: ./hero.png
 heroAlt: "IMAGE PENDING: hero photo or CAD render of The Watering Hole flash-chill dispenser"
+model3d:
+  kind: glb
+  src: models/watering-hole.glb
 ---
 
 ## Problem
