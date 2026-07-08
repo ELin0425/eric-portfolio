@@ -1,0 +1,177 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TitleBlock from '../../components/TitleBlock.astro';
+import ModelViewer from '../../components/ModelViewer.astro';
+import Figure from '../../components/Figure.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  const sorted = [...projects].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return sorted.map((project, index) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      prev: sorted[index + 1] ?? sorted[0],
+      next: sorted[index - 1] ?? sorted[sorted.length - 1],
+    },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const base = import.meta.env.BASE_URL;
+
+const title = `${project.data.title} | Eric Lin`;
+const description = project.data.summary;
+---
+
+<Base title={title} description={description}>
+  <article class="section-block project-detail">
+    <div class="container-text">
+      <p class="breadcrumb">
+        <a href={`${base}#projects`}>Projects</a> / {project.data.title}
+      </p>
+
+      <TitleBlock project={project} />
+
+      {project.data.model3d && (
+        <div class="detail-block">
+          <ModelViewer model3d={project.data.model3d} alt={`Interactive 3D model of ${project.data.title}`} />
+        </div>
+      )}
+
+      <div class="detail-block">
+        <Figure src={project.data.hero} alt={project.data.heroAlt} />
+      </div>
+
+      <div class="project-body">
+        <Content />
+      </div>
+
+      <nav class="prev-next" aria-label="Other projects">
+        <a class="prev-next-link" href={`${base}projects/${prev.id}/`}>
+          <span class="prev-next-label">PREVIOUS</span>
+          <span class="prev-next-title">{prev.data.title}</span>
+        </a>
+        <a class="prev-next-link prev-next-right" href={`${base}projects/${next.id}/`}>
+          <span class="prev-next-label">NEXT</span>
+          <span class="prev-next-title">{next.data.title}</span>
+        </a>
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .project-detail {
+    padding-bottom: var(--s-9);
+  }
+
+  .breadcrumb {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    color: var(--color-text-3);
+    margin-bottom: var(--s-5);
+  }
+  .breadcrumb a {
+    color: var(--color-text-3);
+  }
+
+  .detail-block {
+    margin-top: var(--s-6);
+  }
+
+  .project-body {
+    margin-top: var(--s-7);
+    font-size: var(--text-body);
+    max-width: 70ch;
+  }
+
+  .project-body :global(h2) {
+    font-size: var(--text-h2);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: var(--s-7);
+    padding-top: var(--s-4);
+    position: relative;
+  }
+  .project-body :global(h2::before) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 2px;
+    background: var(--color-accent);
+  }
+  .project-body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .project-body :global(p) {
+    margin-top: var(--s-4);
+    line-height: 1.65;
+  }
+
+  .project-body :global(ul),
+  .project-body :global(ol) {
+    margin-top: var(--s-4);
+    padding-left: 1.25em;
+  }
+  .project-body :global(li + li) {
+    margin-top: var(--s-2);
+  }
+
+  .project-body :global(figure) {
+    margin: var(--s-6) 0;
+  }
+  .project-body :global(figure img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-1);
+  }
+  .project-body :global(figcaption) {
+    margin-top: var(--s-2);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-text-3);
+  }
+
+  .prev-next {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-5);
+    margin-top: var(--s-8);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+
+  .prev-next-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    text-decoration: none;
+    max-width: 45%;
+  }
+  .prev-next-right {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .prev-next-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.06em;
+    color: var(--color-text-3);
+  }
+
+  .prev-next-title {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+</style>

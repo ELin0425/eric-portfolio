@@ -1,0 +1,144 @@
+---
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: `${base}#projects`, label: 'Projects' },
+  { href: `${base}#experience`, label: 'Experience' },
+  { href: `${base}#skills`, label: 'Skills' },
+  { href: `${base}#contact`, label: 'Contact' },
+];
+---
+
+<header class="nav" id="site-nav">
+  <div class="container nav-inner">
+    <a class="nav-wordmark" href={base}>EL / Eric Lin</a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-secondary nav-resume" href={`${base}resume.pdf`} target="_blank" rel="noopener">Resume PDF</a>
+      <button class="nav-menu-btn" id="nav-menu-btn" aria-expanded="false" aria-controls="nav-panel">Menu</button>
+    </div>
+  </div>
+
+  <div class="nav-panel" id="nav-panel">
+    <nav aria-label="Primary, mobile">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .nav.is-scrolled {
+    border-bottom-color: var(--color-border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-wordmark {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: var(--s-6);
+  }
+  .nav-links a {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: var(--color-text-2);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .nav-links a:hover {
+    color: var(--color-text);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .nav-resume {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+
+  .nav-menu-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: var(--s-2);
+  }
+
+  .nav-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    background: var(--color-bg);
+    border-bottom: 1px solid transparent;
+    transition: grid-template-rows var(--dur-med) var(--ease), border-color var(--dur-med) var(--ease);
+  }
+  .nav-panel > nav {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .nav-panel.is-open {
+    grid-template-rows: 1fr;
+    border-bottom-color: var(--color-border);
+  }
+  .nav-panel nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--gutter);
+  }
+  .nav-panel a {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-panel a:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 640px) {
+    .nav-links {
+      display: flex;
+    }
+    .nav-menu-btn {
+      display: none;
+    }
+    .nav-panel {
+      display: none;
+    }
+  }
+</style>

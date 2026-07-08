@@ -1,0 +1,37 @@
+---
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>Eric Lin · Mechanical Engineering, RIT '27</span>
+    <a href="mailto:ericlin042504@gmail.com">ericlin042504@gmail.com</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--s-6);
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-3);
+    font-size: var(--text-small);
+    color: var(--color-text-3);
+    flex-wrap: wrap;
+  }
+  .footer-inner a {
+    color: var(--color-text-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 639px) {
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

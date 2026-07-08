@@ -1,0 +1,123 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { CATEGORY_LABELS } from '../lib/categories';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, category, date, status, tools, links } = project.data;
+
+const dateLabel = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const statusLabel = status === 'complete' ? 'Complete' : 'In progress';
+---
+
+<div class="title-block">
+  <div class="tb-row tb-title-row">
+    <h1 class="tb-title">{title}</h1>
+  </div>
+  <div class="tb-row tb-cells">
+    <div class="tb-cell">
+      <span class="tb-label">CATEGORY</span>
+      <span class="tb-value">{CATEGORY_LABELS[category] ?? category}</span>
+    </div>
+    <div class="tb-cell">
+      <span class="tb-label">DATE</span>
+      <span class="tb-value">{dateLabel}</span>
+    </div>
+    <div class="tb-cell">
+      <span class="tb-label">STATUS</span>
+      <span class="tb-value">{statusLabel}</span>
+    </div>
+    <div class="tb-cell">
+      <span class="tb-label">TOOLS</span>
+      <span class="tb-value">{tools.join(', ')}</span>
+    </div>
+  </div>
+  {links && (links.github || links.drawingPdf) && (
+    <div class="tb-row tb-links">
+      {links.github && <a href={links.github} target="_blank" rel="noopener">GitHub repo</a>}
+      {links.drawingPdf && <a href={links.drawingPdf} target="_blank" rel="noopener">Drawing PDF</a>}
+    </div>
+  )}
+</div>
+
+<style>
+  .title-block {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-s);
+  }
+
+  .tb-row + .tb-row {
+    border-top: 1px solid var(--color-border-strong);
+  }
+
+  .tb-title-row {
+    padding: var(--s-5);
+  }
+
+  .tb-title {
+    font-size: var(--text-h1);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-text);
+  }
+
+  .tb-cells {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tb-cell {
+    padding: var(--s-4) var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    border-top: 1px solid var(--color-border-strong);
+  }
+  .tb-cell:nth-child(-n+2) {
+    border-top: none;
+  }
+  .tb-cell:nth-child(odd) {
+    border-right: 1px solid var(--color-border-strong);
+  }
+
+  .tb-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-3);
+  }
+
+  .tb-value {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    overflow-wrap: break-word;
+  }
+
+  .tb-links {
+    display: flex;
+    gap: var(--s-5);
+    padding: var(--s-4) var(--s-5);
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+  }
+
+  @media (min-width: 640px) {
+    .tb-cells {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .tb-cell {
+      border-top: none;
+    }
+    .tb-cell:not(:first-child) {
+      border-left: 1px solid var(--color-border-strong);
+      border-right: none;
+    }
+  }
+</style>

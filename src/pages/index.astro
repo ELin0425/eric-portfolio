@@ -1,0 +1,202 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import CredStrip from '../components/CredStrip.astro';
+import ProjectFilter from '../components/ProjectFilter.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import SkillsTable from '../components/SkillsTable.astro';
+import { SITE } from '../lib/site';
+
+const base = import.meta.env.BASE_URL;
+const title = 'Eric Lin | Mechanical Engineering Portfolio';
+const description = 'Mechanical engineering student at RIT (May 2027) with hands-on CAD, GD&T, machining, and pipe stress experience. Portfolio of design-and-build projects.';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categoryCounts = new Map<string, number>();
+for (const p of projects) {
+  categoryCounts.set(p.data.category, (categoryCounts.get(p.data.category) ?? 0) + 1);
+}
+const categories = Array.from(categoryCounts, ([key, count]) => ({ key, count }));
+---
+
+<Base title={title} description={description}>
+  <Hero />
+  <CredStrip />
+
+  <section id="projects" class="section-block projects-section">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-kicker">SELECTED WORK</span>
+        <h2 class="section-h2">Projects</h2>
+        <p class="section-intro">Built, not just modeled. Each write-up covers the problem, constraints, design decisions, analysis, and what actually happened.</p>
+      </div>
+
+      <ProjectFilter categories={categories} />
+
+      <div class="project-grid" id="project-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+
+      <p class="project-empty-state" id="project-empty-state" hidden>No projects in this category yet.</p>
+    </div>
+  </section>
+
+  <section id="experience" class="section-block experience-section">
+    <div class="container-text">
+      <div class="section-header" data-reveal>
+        <span class="section-kicker">EXPERIENCE</span>
+        <h2 class="section-h2">Experience</h2>
+      </div>
+
+      <div class="experience-list">
+        <ExperienceItem
+          role="Mechanical Engineer Intern, RMF Engineering"
+          dates="[EDIT: dates]"
+          bullets={[
+            'Built and maintained Revit models of campus utility piping and tunnel systems.',
+            'Drafted and revised P&IDs in AutoCAD Plant 3D.',
+            'Ran pipe stress analyses in Bentley AutoPIPE and documented results for engineering review.',
+          ]}
+        />
+        <ExperienceItem
+          dates="[EDIT: dates]"
+          role="Team Member, Encore Fashion Group"
+          oneLine="Team Member, Encore Fashion Group: inventory and onboarding support (non-engineering role)."
+        />
+      </div>
+
+      <div class="resume-block">
+        <p>Full history, coursework, and references on the resume.</p>
+        <a class="btn btn-primary" href={`${base}resume.pdf`} target="_blank" rel="noopener">Download resume (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section-block skills-section">
+    <div class="container-text">
+      <div class="section-header" data-reveal>
+        <span class="section-kicker">CAPABILITIES</span>
+        <h2 class="section-h2">Skills and tools</h2>
+        <p class="section-intro">Grouped by what I actually use them for, with the project or job where each earned its place.</p>
+      </div>
+
+      <div class="skills-table-wrap">
+        <SkillsTable />
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-block contact-section">
+    <div class="contact-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-kicker">CONTACT</span>
+        <h2 class="section-h2">Get in touch</h2>
+        <p class="contact-copy">The fastest way to reach me is email. I am actively interviewing for internship and new-grad mechanical engineering roles.</p>
+      </div>
+      <div class="contact-buttons">
+        <a class="btn btn-primary" href="mailto:ericlin042504@gmail.com">Email me</a>
+        {SITE.linkedin && (
+          <a class="btn btn-secondary" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        )}
+        <a class="btn btn-secondary" href={`${base}resume.pdf`} target="_blank" rel="noopener">Resume PDF</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .projects-section {
+    padding-bottom: var(--s-8);
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+    margin-top: var(--s-6);
+  }
+
+  .project-empty-state {
+    text-align: center;
+    color: var(--color-text-3);
+    font-size: var(--text-small);
+    margin-top: var(--s-6);
+  }
+
+  @media (min-width: 768px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+
+  .experience-section,
+  .skills-section {
+    padding-bottom: var(--s-8);
+  }
+
+  .experience-list {
+    margin-top: var(--s-6);
+  }
+
+  .resume-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    margin-top: var(--s-6);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+  .resume-block p {
+    font-size: var(--text-small);
+    color: var(--color-text-2);
+  }
+
+  @media (max-width: 639px) {
+    .resume-block {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+  }
+
+  .skills-table-wrap {
+    margin-top: var(--s-6);
+  }
+
+  .contact-section {
+    padding-bottom: var(--s-9);
+  }
+
+  .contact-inner {
+    max-width: 34rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    text-align: center;
+  }
+
+  .contact-copy {
+    margin-top: var(--s-3);
+    color: var(--color-text-2);
+  }
+
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--s-3);
+    margin-top: var(--s-5);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 639px) {
+    .contact-buttons {
+      flex-direction: column;
+    }
+  }
+</style>

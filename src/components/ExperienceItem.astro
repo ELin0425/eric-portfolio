@@ -1,0 +1,68 @@
+---
+interface Props {
+  role: string;
+  dates: string;
+  bullets?: string[];
+  oneLine?: string;
+}
+
+const { role, dates, bullets, oneLine } = Astro.props;
+---
+
+<div class="exp-item">
+  <div class="exp-dates">{dates}</div>
+  <div class="exp-content">
+    {oneLine ? (
+      <p class="exp-one-line">{oneLine}</p>
+    ) : (
+      <>
+        <h3 class="exp-role">{role}</h3>
+        {bullets && (
+          <ul class="exp-bullets">
+            {bullets.map((b) => <li>{b}</li>)}
+          </ul>
+        )}
+      </>
+    )}
+  </div>
+</div>
+
+<style>
+  .exp-item {
+    display: grid;
+    gap: var(--s-3);
+  }
+  .exp-item + .exp-item {
+    margin-top: var(--s-6);
+  }
+
+  .exp-dates {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    color: var(--color-text-3);
+  }
+
+  .exp-role {
+    font-size: var(--text-h3);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .exp-bullets {
+    margin-top: var(--s-2);
+    padding-left: 1.25em;
+  }
+  .exp-bullets li + li {
+    margin-top: var(--s-2);
+  }
+
+  .exp-one-line {
+    color: var(--color-text-2);
+  }
+
+  @media (min-width: 640px) {
+    .exp-item {
+      grid-template-columns: 160px 1fr;
+    }
+  }
+</style>
