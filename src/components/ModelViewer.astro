@@ -8,6 +8,8 @@ interface Props {
 }
 
 const { model3d, alt } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const modelSrc = model3d.kind === 'glb' ? `${base}${model3d.src}` : model3d.src;
 
 let posterSrc: string | undefined;
 if (model3d.poster) {
@@ -18,7 +20,7 @@ if (model3d.poster) {
 
 <div class="model-viewer-wrap">
   {model3d.kind === 'glb' && (
-    <model-viewer src={model3d.src} alt={alt} camera-controls poster={posterSrc}>
+    <model-viewer src={modelSrc} alt={alt} camera-controls poster={posterSrc}>
       <div slot="poster" class="model-poster">
         {posterSrc && <img src={posterSrc} alt="" />}
         <span class="model-poster-label">Loading 3D model</span>

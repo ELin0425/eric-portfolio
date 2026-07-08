@@ -7,6 +7,9 @@ category: design-build
 tools: ["Onshape", "Statics", "Hand calcs"]
 hero: ./hero.png
 heroAlt: "IMAGE PENDING: hero photo or CAD render of the Mini Catapult"
+model3d:
+  kind: glb
+  src: models/mini-catapult.gltf
 ---
 
 ## Problem

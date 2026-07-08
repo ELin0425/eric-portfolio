@@ -6,7 +6,7 @@ status: complete
 category: embedded
 tools: ["Arduino", "Onshape", "Solenoids"]
 hero: ./hero.png
-heroAlt: "IMAGE PENDING: hero photo of the Chime Machine solenoid striker mechanism"
+heroAlt: "Isometric CAD render of the Chime Machine solenoid striker mechanism and frame"
 ---
 
 ## Problem

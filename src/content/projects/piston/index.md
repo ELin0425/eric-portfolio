@@ -7,6 +7,9 @@ category: machining
 tools: ["Onshape", "GD&T", "Manual lathe", "Manual mill"]
 hero: ./hero.png
 heroAlt: "IMAGE PENDING: photo of the machined piston with calipers measuring a toleranced dimension"
+model3d:
+  kind: glb
+  src: models/piston.gltf
 ---
 
 ## Problem
