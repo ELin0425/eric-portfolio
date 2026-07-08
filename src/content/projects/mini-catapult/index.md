@@ -1,12 +1,12 @@
 ---
 title: "Mini Catapult"
 summary: "Statics-driven launch mechanism sized from free-body analysis before any CAD was drawn."
-date: 2023-06-01 # [EDIT: confirm month - Eric recalls 2023]
+date: 2024-04-07 # sourced from the build photo's EXIF timestamp
 status: complete
 category: design-build
 tools: ["Onshape", "Statics", "Hand calcs"]
-hero: ./hero.png
-heroAlt: "IMAGE PENDING: hero photo or CAD render of the Mini Catapult"
+hero: ./hero.jpeg
+heroAlt: "The 3D-printed catapult arm, showing the throwing pouch, rubber-band attachment notch, and fulcrum mount"
 model3d:
   kind: glb
   src: models/mini-catapult.gltf

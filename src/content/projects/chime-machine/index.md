@@ -21,13 +21,17 @@ RIT team design project ("robochime"): build a device that autonomously plays a 
 
 ## Design decisions
 
+![The assembled Chime Machine](./build-overview.png "The finished device: tube resonators mounted in a laser-cut wood frame, driven by the motor-and-solenoid mechanism at center")
+
 - [EDIT: solenoid striker mechanism chosen over the alternative, and why]
 - [EDIT: Arduino timing/control approach chosen (e.g. interrupt-driven vs. polling) and why]
 - [EDIT: mounting/frame decision in Onshape and its rationale]
 
 ## Analysis and validation
 
-[EDIT: how the 50 percent efficiency improvement was measured against the first prototype: what was measured (power draw, strike energy, response time), and the before/after numbers. Inline a photo of the test setup or a measurement here.]
+![Close-up of the motor and gear mechanism](./build-closeup.png "The motor and gear train that times the striker mechanism")
+
+[EDIT: how the 50 percent efficiency improvement was measured against the first prototype: what was measured (power draw, strike energy, response time), and the before/after numbers.]
 
 ## Outcome
 

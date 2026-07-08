@@ -2,11 +2,11 @@
 title: "The Watering Hole"
 summary: "Flash-chill beverage dispenser designed in Fusion 360 across three client-driven design iterations."
 date: 2026-01-01 # [EDIT: confirm month - Eric confirms year 2026]
-status: complete
+status: in-progress
 category: design-build
 tools: ["Fusion 360", "Client iteration", "Thermal design"]
 hero: ./hero.png
-heroAlt: "IMAGE PENDING: hero photo or CAD render of The Watering Hole flash-chill dispenser"
+heroAlt: "Fusion 360 assembly render of The Watering Hole flash-chill dispenser, transparent shell showing the internal keg, canister, and electronics layout"
 model3d:
   kind: glb
   src: models/watering-hole.glb
