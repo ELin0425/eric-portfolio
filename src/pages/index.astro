@@ -11,7 +11,7 @@ import { SITE } from '../lib/site';
 
 const base = import.meta.env.BASE_URL;
 const title = 'Eric Lin | Mechanical Engineering Portfolio';
-const description = 'Mechanical engineering student at RIT (May 2027) with hands-on CAD, GD&T, machining, and pipe stress experience. Portfolio of design-and-build projects.';
+const description = 'Mechanical engineering student at RIT (Dec 2026) with hands-on CAD, GD&T, machining, and pipe stress experience. Portfolio of design-and-build projects.';
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -57,25 +57,25 @@ const categories = Array.from(categoryCounts, ([key, count]) => ({ key, count })
           role="Dishroom/Catering, Rochester Institute of Technology"
           dates="Aug 2022 - Present"
           bullets={[
-            'Cleaned and reorganized kitchen equipment to maintain hygiene standards and seamless daily operations.',
-            'Managed and mentored new recruits, maintaining composure and efficiency in a fast-paced, high-pressure environment.',
+            'Improved kitchen workflow efficiency and upheld hygiene standards by reorganizing and maintaining equipment across a high-volume dining operation.',
+            'Maintained team efficiency during peak service by mentoring new recruits in a fast-paced, high-pressure kitchen.',
           ]}
         />
         <ExperienceItem
           role="Mechanical Engineer Intern, RMF Engineering"
           dates="Sept 2025 - Dec 2025"
           bullets={[
-            'Built and maintained Revit models of campus utility piping and tunnel systems.',
-            'Drafted and revised P&IDs in AutoCAD Plant 3D.',
-            'Ran pipe stress analyses in Bentley AutoPIPE and documented results for engineering review.',
+            'Improved design accuracy and coordination with project engineers by building detailed Revit models of piping for vaults and tunnels.',
+            'Enhanced system documentation and design workflow clarity by producing clear P&IDs in AutoCAD Plant 3D.',
+            'Improved design safety and reliability by performing pipe stress analyses in Bentley AutoPIPE and optimizing layouts to meet allowable limits.',
           ]}
         />
         <ExperienceItem
           role="Team Member, Encore Fashion Group"
           dates="June 2024 - Aug 2024"
           bullets={[
-            'Created and managed Excel spreadsheets for jewelry sales inventory, improving data accuracy and operational efficiency.',
-            'Delegated tasks and trained summer staff on company procedures, improving team productivity.',
+            'Kept jewelry inventory organized across nested bins and sub-bins by building a tracking sheet that let staff check off sorting and labeling progress in real time.',
+            'Cut new-hire ramp-up time on inventory workflows by onboarding peers directly, using a similar age/skill level to explain pain points more clearly than management could.',
           ]}
         />
         <ExperienceItem
