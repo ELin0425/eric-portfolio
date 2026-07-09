@@ -31,7 +31,7 @@ RIT team design project ("robochime"): build a device that autonomously plays a 
 
 ![Close-up of the motor and gear mechanism](./build-closeup.png "The motor and gear train that times the striker mechanism")
 
-Three of the seven tube resonators were measured with a microphone and Audacity and compared against the frequency predicted by the pipe-length model (steel density and Young's modulus sourced from a statics reference and aqua-calc.com). Measured frequencies landed 1.36%, 0.24%, and 0.056% off prediction — all well inside the team's ±2% tolerance — so no pipe needed re-cutting or tuning by ear.
+Three of the seven tube resonators were measured with a microphone and Audacity and compared against the frequency predicted by the pipe-length model (steel density and Young's modulus sourced from a statics reference and aqua-calc.com). Measured frequencies landed 1.36%, 0.24%, and 0.056% off prediction, all well inside the team's ±2% tolerance, so no pipe needed re-cutting or tuning by ear.
 
 ## Outcome
 
